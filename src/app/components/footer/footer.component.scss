@@ -1,0 +1,28 @@
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+  
+    .footer-column {
+      text-align: center;
+  
+      img {
+        height: 30px;
+        margin-bottom: 5px;
+      }
+  
+      h4 {
+        margin-bottom: 10px;
+        font-size: 16px;
+        color: #000;
+      }
+  
+      .greyed-text {
+        color: #777;
+        margin: 2px 0;
+      }
+    }
+  }
+  
