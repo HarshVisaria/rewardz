@@ -1,0 +1,83 @@
+<div class="listing-page">
+  <div class="search-bar">
+    <div class="search">Search</div>
+    <div class="search-input-wrapper">
+      <span class="search-icon">
+        <img src="assets/search.png" alt="search icon" srcset="" />
+      </span>
+      <input type="text" placeholder="Search rewards..." />
+    </div>
+  </div>
+  <div class="applied-filters">
+    <span class="bold"> Applied Filters: </span>
+    {{ selectedCategories[0] }}
+  </div>
+  <div class="content">
+    <div class="categories">
+      <h3>Categories</h3>
+      <ul>
+        <li
+          *ngFor="let category of availableCategories"
+          (click)="selectCategory(category)"
+          [ngClass]="{
+            'selected-category': selectedCategories.includes(category)
+          }"
+        >
+          <span class="category-name">{{ category }}</span>
+          <img
+            *ngIf="!selectedCategories.includes(category)"
+            src="assets/check-mark.png"
+            alt=""
+            srcset=""
+          />
+          <img
+            *ngIf="selectedCategories.includes(category)"
+            src="assets/check.png"
+            alt=""
+            srcset=""
+          />
+        </li>
+      </ul>
+      <!-- <ul>
+        <li>e-Voucher</li>
+        <li>Products</li>
+        <li>Fashion & Retail</li>
+      </ul> -->
+    </div>
+    <div>
+      <div class="items-header">
+        <span class="total-results"> {{ items.length }} results found </span>
+        <span class="sort-button"> Sort </span>
+      </div>
+      <div class="items-list">
+        <div class="item" *ngFor="let item of items">
+          <div class="item-image-wrapper">
+            <img
+              [src]="item.display_img_url || 'assets/card-image.jpg'"
+              alt="{{ item.name }}"
+            />
+            <span class="image-overlay-text" *ngIf="item.quantity === 0">
+              (Out Of Stock)
+            </span>
+            <span
+              class="image-overlay-text"
+              *ngIf="item.quantity <= item.low_quantity && item.quantity !== 0"
+            >
+              <div class="high-demand">ON HIGH DEMAND</div>
+              <div>(Only {{ item.quantity }} rewardz left)</div>
+            </span>
+          </div>
+          <div class="item-details">
+            <h4>{{ item.name }}</h4>
+            <p>{{ item.points }} points</p>
+            <hr />
+            <p>
+              <span class="valid-until"> Valid Until: </span>
+              {{ item.valid_until | date : "dd-MM-yyyy" }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
