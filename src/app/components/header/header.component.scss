@@ -1,0 +1,18 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ff0000;
+  color: #fff;
+
+  .header-left img {
+    height: 40px;
+  }
+
+  .header-right img {
+    margin-left: 20px;
+    height: 30px;
+    cursor: pointer;
+  }
+}
