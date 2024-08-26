@@ -1,4 +1,4 @@
-<div class="listing-page">
+<div class="content-section">
   <div class="search-bar">
     <div class="search">Search</div>
     <div class="search-input-wrapper">
@@ -10,7 +10,9 @@
   </div>
   <div class="applied-filters">
     <span class="bold"> Applied Filters: </span>
-    {{ selectedCategories[0] }}
+    <span *ngIf="selectedCategories.length > 0" class="filters">
+      {{ selectedCategories[0] }} X
+    </span>
   </div>
   <div class="content">
     <div class="categories">
@@ -46,8 +48,31 @@
     </div>
     <div>
       <div class="items-header">
-        <span class="total-results"> {{ items.length }} results found </span>
-        <span class="sort-button"> Sort </span>
+        <span class="total-results bold">
+          {{ items.length }} results found
+        </span>
+        <div class="sort-button">
+          <button (click)="toggleSortPanel()">Sort</button>
+        </div>
+
+        <div class="sort-panel" [class.open]="isSortPanelOpen">
+          <div class="sort-header">
+            <h3>Filter By</h3>
+            <span class="reset">Reset All</span>
+          </div>
+          <div>
+            <span> Sort </span>
+            <div class="sort-types">
+              <button class="sort-buttons" (click)="sortByName('asc')">
+                A-Z
+              </button>
+              <button class="sort-buttons" (click)="sortByName('desc')">
+                Z-A
+              </button>
+            </div>
+          </div>
+          <button class="apply-sort" (click)="applySort()">Apply</button>
+        </div>
       </div>
       <div class="items-list">
         <div class="item" *ngFor="let item of items">

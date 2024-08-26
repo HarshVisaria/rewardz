@@ -23,7 +23,8 @@ export class ContentSectionComponent implements OnInit {
     'Evergreen',
     'Fashion & Retail',
   ];
-  selectedCategories: string[] = [];
+  selectedCategories: string[] = ['e-Voucher'];
+  isSortPanelOpen = false;
 
   constructor() {}
 
@@ -74,11 +75,27 @@ export class ContentSectionComponent implements OnInit {
   selectCategory(category: string): void {
     const index = this.selectedCategories.indexOf(category);
     if (index > -1) {
-      // If already selected, remove it
       this.selectedCategories = [];
     } else {
-      // Otherwise, add it to the selected categories
       this.selectedCategories = [category];
     }
+  }
+
+  toggleSortPanel() {
+    this.isSortPanelOpen = !this.isSortPanelOpen;
+  }
+
+  sortByName(order: string) {
+    this.items.sort((a, b) => {
+      if (order === 'asc') {
+        return a.name.localeCompare(b.name);
+      } else {
+        return b.name.localeCompare(a.name);
+      }
+    });
+  }
+
+  applySort() {
+    this.isSortPanelOpen = false;
   }
 }
